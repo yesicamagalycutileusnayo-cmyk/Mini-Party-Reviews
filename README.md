@@ -25,3 +25,14 @@ Accede con un usuario administrador registrado (o crea uno en la base de datos s
 Una vez logueado como admin, serás redirigido a:
 http://localhost/mini_party_reviews/admin/admin_index.php
 Allí podrás gestionar usuarios, salones, comentarios, zonas y fotos eso solo si se es administrador en caso de no serlo directamente se irán a ver los salones.
+Características 
+Validación de sesión:
+Solo los administradores pueden acceder; si no, se redirige al login.php en el caso de administrador si no solamente se va a los salones como usuario normal.
+-Interfaz visual
+-Contenido dinámico
+Muestra el nombre del administrador logueado para la parte de administrador.
+Reproduce automáticamente un video de bienvenida de YouTube en la parte de administrador.
+Imagen lateral decorativa en el panel de administrador.
+Estilo visual personalizado:
+Colores negro y dorado 
+Efectos hover, sombras y animaciones suaves.
