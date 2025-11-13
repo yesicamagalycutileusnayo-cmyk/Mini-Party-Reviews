@@ -7,9 +7,9 @@ Antes de instalar el sistema, asegúrate de tener lo siguiente:
 •	Navegador web actualizado (Chrome, Edge, Firefox, etc.).
 •	Base de datos importada (archivo .sql correspondiente al sistema).
 2. Instalación paso a paso
-1.	Descargar el proyecto
-2.	Configurar la base de datos
-       CREATE DATABASE mini_party_reviews;
+-	Descargar el proyecto
+-	Configurar la base de datos
+-      CREATE DATABASE mini_party_reviews;
 3.	Configurar la conexión a la base de datos
 Abre el archivo conexion.php.
 Edita los valores de conexión según tu entorno local:
