@@ -30,14 +30,25 @@ if ($idsDestacados) {
     }
 }
 
-// Función para dibujar estrellas
+// Función para dibujar estrellas con medias estrellas y color según promedio
 function mostrarEstrellas($promedio) {
     $estrellas = "";
-    $puntos = round($promedio);
+    $entero = floor($promedio);  
+    $decimal = $promedio - $entero;   
+
     for ($i = 1; $i <= 5; $i++) {
-        $estrellas .= ($i <= $puntos) ? "⭐" : "☆";
+        if ($i <= $entero) {
+            $estrellas .= "⭐";
+        } elseif ($i == $entero + 1 && $decimal >= 0.5) {
+            $estrellas .= "⯨"; 
+        } else {
+            $estrellas .= "☆"; 
+        }
     }
-    return $estrellas;
+    // color según promedio
+    $color = ($promedio >= 4) ? '#ffd700' : (($promedio >= 2) ? '#ffa500' : '#ff4d4d');
+
+    return "<span style='color:$color;font-size:18px;'>$estrellas</span>";
 }
 ?>
 
@@ -58,13 +69,14 @@ header { background-color: #1abc9c; color: white; padding: 30px 40px; text-align
 .card-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 25px; }
 .card { background: white; border-radius: 15px; width: 260px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); overflow: hidden; transition: transform 0.4s, box-shadow 0.4s; cursor: pointer; }
 .card:hover { transform: translateY(-10px) scale(1.05); box-shadow: 0 15px 30px rgba(0,0,0,0.3); }
+.card:hover .stars { transform: scale(1.1); transition: transform 0.3s ease; }
 .carousel { position: relative; width: 100%; height: 160px; overflow: hidden; }
 .carousel img { width: 100%; height: 160px; object-fit: cover; position: absolute; top: 0; left: 0; transition: opacity 1s ease-in-out; opacity: 0; }
 .carousel img.active { opacity: 1; }
 .card-body { padding: 20px; }
 .card-body h3 { margin: 0 0 10px; color: #1abc9c; }
 .card-body p { margin: 0 0 10px; color: #666; }
-.card-body .stars { font-size: 18px; color: #ffd700; }
+.card-body .stars { font-size: 18px; }
 footer { background: #16a085; color: white; text-align: center; padding: 25px; }
 .steps { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; margin-top: 30px; }
 .step { background: white; padding: 20px; border-radius: 15px; width: 220px; box-shadow:0 4px 10px rgba(0,0,0,0.1); }
@@ -107,7 +119,7 @@ footer { background: #16a085; color: white; text-align: center; padding: 25px; }
                     <div class="card-body">
                         <h3><?= htmlspecialchars($salon['Nombre']) ?></h3>
                         <p><?= htmlspecialchars($salon['Zona']) ?></p>
-                        <div class="stars"><?= mostrarEstrellas($salon['Promedio']) ?> (<?= $salon['Promedio'] ?>)</div>
+                        <div class="stars"><?= mostrarEstrellas($salon['Promedio']) ?> (<?= number_format($salon['Promedio'],1) ?>)</div>
                     </div>
                 </div>
             <?php endforeach; ?>
